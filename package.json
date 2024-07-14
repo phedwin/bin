@@ -1,0 +1,15 @@
+{
+  "name": "binds",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "index": "bun run index.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/node": "^20.14.10"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

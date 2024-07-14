@@ -1,16 +1,16 @@
-# binds
+## idea -> command line calculator
+the idea is to keep a calculator exactly where ur write code.
 
-To install dependencies:
 
-```bash
-bun install
+example
+```
+ 
+ calc -b 101 | 100
+ calc -d 10 + 10
+ calc -d 1 << 2
+
 ```
 
-To run:
-
-```bash
-bun run index.ts
-```
-
-This project was created using `bun init` in bun v1.1.18. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
-# RetroCalc
+TODO
+- [PROGRESS] write a basic calculator
+- [] write a vm
