@@ -1,5 +1,5 @@
 ## idea -> command line calculator
-the idea is to keep a calculator exactly where ur write code.
+the idea is to keep a calculator exactly where u write code.
 
 
 example
