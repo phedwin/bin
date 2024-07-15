@@ -1,23 +1,12 @@
 
 
-import { Libs__cMd_arguments } from "./std";
-import { Tokenizer } from "./tokens"
+import { Libs__cMd_arguments } from "../lib/std";
+import { Tokenizer } from "./compiler"
+import { OptionFlags, type Flags } from "./config";
 
-
-enum OptionFlags {
-    Binary,
-    Decimal,
-    Hexadecimal,
-    Help
-}
-
-interface Flags {
-    short_flag: string,
-    flag: OptionFlags
-}
 
 let options_flags: Flags[] = [ 
-    {short_flag: "-h", flag: OptionFlags.Help },
+    { short_flag: "-h", flag: OptionFlags.Help },
     { short_flag: "-d", flag: OptionFlags.Decimal }, 
     { short_flag: "-b", flag: OptionFlags.Binary },
     { short_flag: "-hx", flag: OptionFlags.Hexadecimal }
@@ -26,11 +15,9 @@ let options_flags: Flags[] = [
 
 export const command_line_options = (args: Flags) =>  {
     if( Object.values(args.short_flag).includes("-h")) 
-        console.error(`usage <${ Libs__cMd_arguments().argv[1]} > -- ${OptionFlags}`);
+        console.error(`usage <${ Libs__cMd_arguments().argv[1]} > ${OptionFlags.Help} `);
     
     console.log("debugger");
-    
-    
 }
 
 export const initiliaze_App = (): void => {

@@ -11,6 +11,7 @@
 #include <sys/types.h>
 #include <sys/termios.h>
 #include <sys/mman.h>
+#include "./lib.h"
 
 enum
 {
@@ -66,7 +67,7 @@ enum
     TRAP_HALT = 0x25   /* halt the program */
 };
 
-#define MEMORY_MAX (1 << 16)
+
 uint16_t memory[MEMORY_MAX];  /* 65536 locations */
 uint16_t reg[R_COUNT];
 
@@ -150,11 +151,11 @@ void read_image_file(FILE* file)
 int read_image(const char* image_path)
 {
     FILE* file = fopen(image_path, "rb");
-    if (!file)  
-        return 0;
-    
+    if ( ! file) panic();
+
     read_image_file(file);
     fclose(file);
+    
     return 1;
 }
 void mem_write(uint16_t address, uint16_t val)
