@@ -1,0 +1,4 @@
+read write test
+
+man open(1)
+O_RDNLY 0_RDWR

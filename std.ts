@@ -65,7 +65,7 @@ export const Libs__qualified_decimal = (alleged_number: string, radix = 10): Err
     }
     let count_undefined = 0; 
     let _ = char_value
-        .filter(n => n != "+")
+        .filter(n => n != "+" && n != "-")
         .forEach(char => {
             if ( ! parseInt(char) ) count_undefined ++;
         });

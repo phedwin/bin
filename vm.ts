@@ -10,13 +10,11 @@
  * 
  */
 
+enum vM_Instructions {
+    Add,
+    Sub
+}
 
-enum Program {
-    Add, 
-    Push,
-    Substract,
-    Pop
-};
 
 const prototype__virtual_Machine = (program: []) => {
     let progam__counter = 0;
@@ -25,7 +23,7 @@ const prototype__virtual_Machine = (program: []) => {
     let stack_pointer = 0;
 
     while( progam__counter < program.length) {
-        let currnt__instruction: Program =  program[progam__counter];
+        let currnt__instruction: vM_Instructions =  program[progam__counter];
 
         switch (currnt__instruction) {
             case "Push":

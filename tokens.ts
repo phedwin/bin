@@ -10,51 +10,52 @@
  * 
  */
 
-
 import { Libs__cMd_arguments, Libs__qualified_decimal, Libs__rmv_whitespace } from "./std";
 
-
 enum Tokens {
-    Add, 
-    Substract,
-    Divide,
-    Pipe,
-    ShiftRight,
-    Shiftleft,
-    BitwiseAnd,
-    BitwiseOR,
-    BitwiseXOR,
-    Multiply,
-    
-    
-    Mod,
+    Add = "ADD",
+    Subtract = "SUBTRACT",
+    Divide = "DIVIDE",
+    Pipe = "PIPE",
+    ShiftRight = "SHIFTRIGHT",
+    ShiftLeft = "SHIFTLEFT",
+    BitwiseAnd = "BITWISEAND",
+    BitwiseOr = "BITWISEOR",
+    BitwiseXor = "BITWISEXOR",
+    Multiply = "MULTIPLY",
+    Mod = "MOD",
+
 
     /// flag  -b -d to switch between binary 0-1 && decimal 0-9 
-    Number,
-    
+    Numbers = "NUMBER",
+   
     /// -hx switch to hexadecimal
-    Strings,
-
-    RightParenthesis,
-    LeftParenthesis,
-
+    Strings = "STRING",
+    
+    RightParenthesis = "RIGHTPARENTHESIS",
+    LeftParenthesis = "LEFTPARENTHESIS",
 }
 
 
-class Tokenizer {
-    /// read from user input and try parsing
-    public get_tokens() {
-        let TOKENS: Tokens[] = [];
-        let argv: string[] = Libs__cMd_arguments().argv;
-        console.log(argv.slice(2, argv.length));
-        
-        for( let value = 0; value < argv.slice(2, argv.length).length + 1; value ++) {
-            if ( argv[value] == "+") TOKENS.push(Tokens.Add);
-            if ( Libs__qualified_decimal(argv[value])) TOKENS.push(Tokens.Number) 
-        };
+/// exists
+
+if( ! Object.values(Tokens).includes(Tokens.Add)) console.log("exists");
+// Object.proto
+
+export class Tokenizer {
+    public get_tokens(): Tokens[] {
+        let TOKENS: Tokens[] = []
+        let cmds = Libs__cMd_arguments().argv.slice(2, Libs__cMd_arguments().argc );
+
+        for ( let token_index = 0; token_index < cmds.length; token_index ++ ) {
+            // hardcode the basic operators. refactor this to a HashMap if its stable
+            if (cmds[token_index] == "+" ) TOKENS.push(Tokens.Add);
+            if (Libs__qualified_decimal(cmds[token_index])) TOKENS.push(Tokens.Numbers);
+            if (cmds[token_index] == "-" ) TOKENS.push(Tokens.Subtract)
+        }
 
         return TOKENS;
-    }
-}
 
-console.log(new Tokenizer().get_tokens());
+    }
+
+}
