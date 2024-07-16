@@ -1,5 +1,11 @@
 # Based on https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore
 
+
+src/*.rs
+Cargo.toml
+Cargo.lock
+*.rs
+target
 # Logs
 
 logs

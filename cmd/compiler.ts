@@ -1,6 +1,6 @@
-
 /**
- * - @author phedwin
+ * 
+ *  @author phedwin
  * 
  * - @license MIT
  * - @file token.ts
@@ -8,11 +8,67 @@
  * - @summary tokens [ Lexer -> Parser ..... ]  -> AST -> IR
  * 
  * 
- */
+ * everytime i continue writing this, i realize how its almost impossible to run
+ * something on the shell that takes keys like parenthesis or pipes or ampersands
+ * 
+ * i think somehow shell is running before all this and it just assume every instruction not flagged
+ * 
+ * @example 
+ * ````
+ * echo -e $(make c)
+ * 
+ * make kinda looks like this
+ * 
+ * c :
+	$(gcc) -o $(vm_output) $(vm) && ./vm.o 1 + 4 - 5 - 12 () + & 1 | 10
+
+ * ````
+    this turns ugly sooo fast
+    ```
+    ➜  binds git:(main) ✗ echo -e $(make c)
+        /bin/sh: 1: Syntax error: "(" unexpected
+        make: *** [Makefile:45: c] Error 2
+        /usr/bin/gcc -o vm.o vm/vm.c && ./vm.o 1 + 4 - 5 - 12 () + & 1 | 10
+    ➜  binds git:(main) ✗
+    ``
+*
+    *
+    * * => so after all that, this should support only basic basic basic math operation
+    * SUPPORTED 
+    *  1. ADD
+    *  2. SUB
+    *  3. MOD
+    *  4. DIVIDE
+    *  5. MULTIPLY
+    * *
+    */
+
+
+    /**
+     * solution
+     * 
+     * ./vm.o "1 + 4 - 5 - 12 () + & 1 | 10"
+     * 
+     * 
+     * @example
+     * ```
+     * ➜  binds git:(main) ✗ ./vm.o "1 + 4 - 5 - 12 () + & 1 | 10"
+
+        ./vm.o
+        1 + 4 - 5 - 12 () + & 1 | 10
+        ➜  binds git:(main) ✗ 
+
+        ```
+    *
+    * enclose 
+    */
+
+    
+
 
 import { Libs__cMd_arguments, Libs__qualified_decimal, Libs__rmv_whitespace } from "../lib/std";
 
-enum Tokens {
+export enum Tokens {
     Add = "ADD",
     Subtract = "SUBTRACT",
     Divide = "DIVIDE",
@@ -83,4 +139,16 @@ export class Tokenizer {
 
         return TOKENS;
     }
+
+
+    /// w/ out loosing meaning.
+    /**
+     * 
+     * input n + x + y - z * q / a
+     * output ((z * q)/a) ... */ 
+     
+    public re_arrange_with_precedence() {
+       
+    }
+    
 }

@@ -29,7 +29,7 @@ void *reallocate_mem(void *ptr, size_t size);
 void free_memory(void *ptr);
 
 static inline void panic() {
-    fprintf(stderr, "Results %s\n", strerror(errno));
+    fprintf(stderr, "Results: %s\n", strerror(errno));
 
     exit(EXIT_FAILURE);
 }

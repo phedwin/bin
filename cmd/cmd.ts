@@ -20,8 +20,8 @@ export const command_line_options = (args: Flags) =>  {
     console.log("debugger");
 }
 
-export const initiliaze_App = (): void => {
-    let tokens = new Tokenizer().get_tokens()
+export const initiliaze_App = (): void => {  
+    let tokens = new Tokenizer().get_tokens();
     
-    console.log(tokens);
+    console.log(tokens);   
 }

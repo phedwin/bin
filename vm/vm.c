@@ -1,12 +1,11 @@
 
-#include "./lib.h"
+
 #include <stdio.h>
-
-void read_files(char *image_path) {
-    FILE* file = fopen(image_path, "rb");
-    if ( ! file) panic();
-}
-
 int main(int argc, char *argv[]) {
-    read_files(argv[1]);
+    ssize_t value;
+
+    for (value = 0; value < argc; value ++) {
+        char *values = argv[value];
+        printf("%s\n", values);
+    }
 }

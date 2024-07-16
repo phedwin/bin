@@ -6,7 +6,6 @@
  * 
  * - @summary Libs__methods 
  * 
- * - @date Sun, July 14th 2024
  * 
  */ 
 
@@ -59,15 +58,18 @@ export const Libs__assert_eq = (condition: boolean): Error | boolean => {
 
 
 export const Libs__qualified_decimal = (alleged_number: string, radix = 10): Error | number => {
+    let doesnt_contain_operators = [ "+", "-", "/", "*", "(", ")", "&", "%", "|", "[", "]"];
+    
     let char_value: string[] = []
     for (let value = 0; value < alleged_number.length; value ++) {
         char_value.push(alleged_number.charAt(value)); 
     }
     let count_undefined = 0; 
     let _ = char_value
-        .filter(n => n != "+" && n != "-")
+        /// SUPPORTED OPERATIONS 
+        .filter(n => ! doesnt_contain_operators.includes(n))
         .forEach(char => {
-            if ( ! parseInt(char) ) count_undefined ++;
+            if ( ! parseInt(char, radix) ) count_undefined ++;
         });
     
     if ( count_undefined > 0) throw new Error(`unable to parse ${alleged_number}`);
@@ -91,5 +93,29 @@ export const Libs__rmv_whitespace = (str: string): string => {
 }
 
 
+export const modulo = (a: number, b: number): number => {
+    return a % b;
+}
+
+export const modulo_bool = (rhs: number, lhs: number): boolean => {
+    return rhs % lhs ? true : false;
+}
+
+
+export const add = (rhs: number, lhs: number): number => {
+    return rhs + lhs;
+}
+
+export const divide = (rhs: number, lhs: number): number => {
+    return rhs /lhs;
+}
+
+export const multiply = (rhs: number, lhs: number): number => {
+    return rhs * lhs;
+}
+
+export const subtract = (rhs: number, lhs: number): number => {
+    return rhs - lhs;
+}
 
 
