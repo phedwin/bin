@@ -11,7 +11,7 @@
 #include <sys/types.h>
 #include <sys/termios.h>
 #include <sys/mman.h>
-#include "./lib.h"
+#include "lib.h"
 
 enum
 {
@@ -55,11 +55,7 @@ enum
 
 
 // inside a virtual/ emulator
-enum
-{
-    MR_KBSR = 0xFE00, /* keyboard status */
-    MR_KBDR = 0xFE02  /* keyboard data */
-};
+
 
 // else -> on standard computer
 /* Mock memory-mapped I/O addresses */
@@ -205,7 +201,7 @@ void out_character(char c) {
 
 
 // run inside a standard computer
-int main(int argc, char *argv[]){
+int main(void) {
     char c = get_characters();  // Read a character from the keyboard
     out_character(c);          // Output the character to the terminal
 }
@@ -462,8 +458,3 @@ int main(int argc, char *argv[]){
 //     }
 //     restore_input_buffering();
 // }
-
-
-
-
- 

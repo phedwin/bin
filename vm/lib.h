@@ -10,6 +10,12 @@
 
 
 
+enum
+{
+    MR_KBSR = 0xFE00, /* keyboard status */
+    MR_KBDR = 0xFE02  /* keyboard data */
+};
+
 // MOCK ON STD COMPUTER
 #define KBSR MOCK_KBSR
 #define KBDR MOCK_KBDR
