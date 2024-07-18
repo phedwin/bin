@@ -8,9 +8,12 @@
 #include <errno.h>
 #include <string.h>
 
-/**
- * Define memory allocation
- */
+
+
+// MOCK ON STD COMPUTER
+#define KBSR MOCK_KBSR
+#define KBDR MOCK_KBDR
+
 #define MEMORY_MAX (1 << 16)  // Define a constant for the maximum memory size
 
 // Define memory allocation macros

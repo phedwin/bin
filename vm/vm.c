@@ -1,11 +1,12 @@
+// Von Neumann architecture
 
+#include <stdint.h>
 
-#include <stdio.h>
-int main(int argc, char *argv[]) {
-    ssize_t value;
+// 1. input
 
-    for (value = 0; value < argc; value ++) {
-        char *values = argv[value];
-        printf("%s\n", values);
-    }
-}
+enum
+{
+    MR_KBSR = 0xFE00, /* keyboard status */
+    MR_KBDR = 0xFE02  /* keyboard data */
+};
+
