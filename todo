@@ -1,0 +1,20 @@
+0. calculator logic [ts]
+ -> basic interactivity[ repl flags -r]
+ -> a compiler( this might look like over engineering but it makes sense to have a specific calculator syntax)
+  something like this should work ((((((((( 1 + 2 ))))))))) & just any test case
+ -> this should support variety of operators but im mostly interested in bits calculation 
+1. virtual machine [rust or c or just ts]
+ -> RISC
+ -> 8 bits width [ just something small]
+ -> have 4 registers
+
+
+
+2. package the ts application
+ ->the vm should run the bin
+
+3. switch to rust build script
+ -> this is somehow convinient & easy to debug
+
+4. ship
+ -> progress 1 + 1 should work 

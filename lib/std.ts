@@ -1,31 +1,20 @@
-/**
- * - @author phedwin
+/*
+ * COPYRIGHT (C) 2024, no warranty! 
  * 
- * - @license MIT
- * - @file std.ts
- * 
- * - @summary Libs__methods 
- * 
- * 
- */ 
+ * file -> standard lib for the calc
+ */
 
 
 /**
  * 
- * @returns { argc: number, argv: string[] }
+ * @returns {  @param argv: string[] }
  * @method __cMd_arguments
  */
 
-export const Libs__cMd_arguments = (): { argc: number, argv: string[] } =>  {
-    //get argc
-    let argc = 0;
-    let argv: string[] = []
-    while( process.argv[argc] != undefined) {
-        argv.push(process.argv[argc]);
-        argc ++;
-    }
-    // can we return an object of argc and argv
-    return { argc, argv };
+export const Libs__cMd_arguments = (): string[] =>  {
+    let argv = process.argv;
+    // sanitize command line
+    return argv.slice(2, argv.length);
 }
 
 /**
@@ -47,6 +36,22 @@ export const Libs__assert_eq = (condition: boolean): Error | boolean => {
 }
 
 
+export const Libs_standard_qualified_decimal = (alleged_number: string, radix = 10, ...optionals: string[]): number => {
+    let doesnt_contain_operators = [ "+", "-", "/", "*", "(", ")", "&", "%", "|", "[", "]"];
+    
+    // trick, just remove the operators, then sanitize
+    let count_undefined = 0;
+    for (let value = 0; value < alleged_number.length; value ++) {
+        if( parseInt(alleged_number.charAt(value), radix) || doesnt_contain_operators.includes(alleged_number.charAt(value))) {
+            count_undefined += 1
+        }    
+    } 
+
+    if ( count_undefined > 0) throw new Error(`unable to parse ${alleged_number}`);
+
+    return Number() // construct
+}
+
 /**
  * 
  * @param alleged_number @type string
@@ -57,7 +62,7 @@ export const Libs__assert_eq = (condition: boolean): Error | boolean => {
  */
 
 
-export const Libs__qualified_decimal = (alleged_number: string, radix = 10): Error | number => {
+export const Libs__qualified_decimal = (alleged_number: string, radix = 10, ...optionals: string[]): number => {
     let doesnt_contain_operators = [ "+", "-", "/", "*", "(", ")", "&", "%", "|", "[", "]"];
     
     let char_value: string[] = []
@@ -93,8 +98,8 @@ export const Libs__rmv_whitespace = (str: string): string => {
 }
 
 
-export const modulo = (a: number, b: number): number => {
-    return a % b;
+export const modulo = (rhs: number, lhs: number): number => {
+    return rhs % lhs;
 }
 
 export const modulo_bool = (rhs: number, lhs: number): boolean => {
@@ -114,7 +119,7 @@ export const multiply = (rhs: number, lhs: number): number => {
     return rhs * lhs;
 }
 
-export const subtract = (rhs: number, lhs: number): number => {
+export const substract = (rhs: number, lhs: number): number => {
     return rhs - lhs;
 }
 

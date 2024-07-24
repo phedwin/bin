@@ -1,19 +1,18 @@
-
-/**
+/*
+ * COPYRIGHT (C) 2024, no warranty! 
  * 
- * 
- * bootstap application
- * 
+ * bootstrap application
  */
 
-import { command_line_options, initiliaze_App } from "../cmd/cmd";
+import { initiliaze_App } from "../cmd/cmd";
 import { Libs__cMd_arguments } from "../lib/std";
 
 
 
 const bootstap = () =>  {
-    if( Libs__cMd_arguments().argc < 3 || Libs__cMd_arguments().argv[2].toLowerCase() == "--help") 
+    if ( Libs__cMd_arguments.length < 0 || Libs__cMd_arguments()[0].includes("--help"))
         process.exit(1);
+
     initiliaze_App();
 }
 

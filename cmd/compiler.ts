@@ -1,12 +1,9 @@
 /**
- * 
- *  @author phedwin
- * 
- * - @license MIT
- * - @file token.ts
- * 
+ * /*
+ * COPYRIGHT (C) 2024, no warranty!  
+ * file -> standard lib for the calc
+ *
  * - @summary tokens [ Lexer -> Parser ..... ]  -> AST -> IR
- * 
  * 
  * everytime i continue writing this, i realize how its almost impossible to run
  * something on the shell that takes keys like parenthesis or pipes or ampersands
@@ -66,7 +63,7 @@
     
 
 
-import { Libs__cMd_arguments, Libs__qualified_decimal, Libs__rmv_whitespace } from "../lib/std";
+import { Libs__cMd_arguments, Libs_standard_qualified_decimal } from "../lib/std";
 
 export enum Tokens {
     Add = "ADD",
@@ -100,7 +97,7 @@ if( ! Object.values(Tokens).includes(Tokens.Add)) console.log("exists");
 export class Tokenizer {
     public get_tokens(): Tokens[] {
         let TOKENS: Tokens[] = [];
-        let cmds = Libs__cMd_arguments().argv.slice(2, Libs__cMd_arguments().argc);
+        let cmds = Libs__cMd_arguments();
 
         for ( let token_index = 0; token_index < cmds.length; token_index++ ) {
             const token = cmds[token_index];
@@ -128,7 +125,7 @@ export class Tokenizer {
                     TOKENS.push(Tokens.RightParenthesis);
                     break;
                 default:
-                    if (Libs__qualified_decimal(token)) {
+                    if (Libs_standard_qualified_decimal(token)) {
                         TOKENS.push(Tokens.Numbers);
                     } else {
                         console.error(`Unrecognized token: ${token}`);
@@ -146,9 +143,4 @@ export class Tokenizer {
      * 
      * input n + x + y - z * q / a
      * output ((z * q)/a) ... */ 
-     
-    public re_arrange_with_precedence() {
-       
-    }
-    
 }
