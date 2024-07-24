@@ -1,6 +1,9 @@
 # Based on https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore
 
+__MACOSX
+github-mark
 asm
+src/*.js
 src/*.rs
 target
 dqlite-sys

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track git</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/x-icon" href="../github-mark/github-mark-white.png">
+    <script src="logger.js"></script>
+    <script src="seeder_logger.js"></script>
+</head>
+<body class="bg-gray-200">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold text-center text-indigo-600 mb-8"> Github Tracker</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-white p-4 rounded-lg shadow-md overflow-auto h-96">
+                <h2 class="text-xl font-bold text-gray-700 mb-2">Server Logs</h2>
+                <p id="logs"> <!--logs-->  </p>
+            </div>
+
+            <div class="bg-white p-4 rounded-lg shadow-md overflow-auto h-96">
+                <h2 class="text-xl font-bold text-gray-700 mb-2">Recent Commits</h2>
+                <table class="table-auto w-full text-left">
+                    <thead class="text-xs font-semibold text-gray-400 bg-gray-100">
+                        <tr>
+                            <th class="px-4 py-2">commit</th>
+                            <th class="px-4 py-2">Author</th>
+                            <th class="px-4 py-2">Message</th>
+                        </tr>
+                    </thead>
+                    <tbody id="commits">
+                        <tr>
+                            <td  id="commit" class="px-4 py-2">123abc</td>
+                            <td  id="author" class="px-4 py-2">John Doe</td>
+                            <td id="message" class="px-4 py-2">Fix bug in login functionality</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="h-12"></div>
+        <h2 class="text-xl font-bold text-gray-700 text-center underline mb-4">TODO</h2>
+        <div class="flex justify-center">
+            <table class="table w-3/4 rounded-lg shadow-md text-left overflow-auto">
+                <thead class="text-xs font-semibold text-gray-400 bg-gray-200">
+                    <tr>
+                        <th class="px-4 py-2">id</th>
+                        <th class="px-4 py-2">todo</th>
+                        <th class="px-4 py-2">status</th>
+                    </tr>
+                </thead>
+                <tbody id="todos">
+                    <tr>
+                        <td class="px-4 py-2">ABC-123</td>
+                        <td class="px-4 py-2">Implement new search functionality</td>
+                        <td class="px-4 py-2">In Progress</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <footer class="text-center text-sm text-gray-500 py-4">
+        Copyright (c) 2024. No warranty!
+    </footer>
+</body>
+</html>

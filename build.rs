@@ -51,30 +51,15 @@ fn package_and_build_application() {
     _ = build;
     let bin_path = "calc";
     // this is how i have it configured
-    cp_bin_sys(bin_path, "/home/linuxbrew/.linuxbrew/bin/calc");
+    // cp_bin_sys(bin_path, "/home/linuxbrew/.linuxbrew/bin/calc");
 }
 
-
-fn cp_bin_sys(from: impl AsRef<Path>, to: impl AsRef<Path>) {
-    for e in from.as_ref().read_dir().unwrap() {
-        let e = e.unwrap();
-        let from = e.path();
-        let to = to.as_ref().join(e.file_name());
-        if e.file_type().unwrap().is_dir() {
-            std::fs::create_dir_all(&to).unwrap();
-            cp_bin_sys(&from, &to);
-        } else {
-            println!("{} => {}", from.display(), to.display());
-            std::fs::copy(&from, &to).unwrap();
-        }
-    }
-}
 
 fn main() -> Result<(), Box<dyn Error>> {
 
     // println!("cargo::rerun-if-changed=*");
     
-    _ = schedule_git_commits();
+    // _ = schedule_git_commits();
     let bin_path = "calc";
 
     let mut bin = std::fs::OpenOptions::new()
@@ -95,3 +80,19 @@ fn main() -> Result<(), Box<dyn Error>> {
     _ = package_and_build_application();
     Ok(())
 }
+
+
+// fn cp_bin_sys(from: impl AsRef<Path>, to: impl AsRef<Path>) {
+//     for e in from.as_ref().read_dir().unwrap() {
+//         let e = e.unwrap();
+//         let from = e.path();
+//         let to = to.as_ref().join(e.file_name());
+//         if e.file_type().unwrap().is_dir() {
+//             std::fs::create_dir_all(&to).unwrap();
+//             cp_bin_sys(&from, &to);
+//         } else {
+//             println!("{} => {}", from.display(), to.display());
+//             std::fs::copy(&from, &to).unwrap();
+//         }
+//     }
+// }

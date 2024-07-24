@@ -14,5 +14,9 @@
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^8.4.1",
+    "sweetalert2": "^11.12.3"
   }
 }
