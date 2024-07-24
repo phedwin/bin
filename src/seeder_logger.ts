@@ -11,13 +11,13 @@
 import { faker } from "@faker-js/faker"
 
 
-interface todo__scheMa {
+export interface todo__scheMa {
     id: string,
     status: string,
     todo: string
 }
 
-interface Server__Logs {
+export interface Server__Logs {
     id: string
     timestamp: Date,
     log_warn: string,
