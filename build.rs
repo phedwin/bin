@@ -1,4 +1,4 @@
-use std::{error::Error, io::Write, net::TcpListener, process::{exit, Command}, time::Duration};
+use std::{error::Error, io::Write, net::TcpListener, path::Path, process::Command, time::Duration};
 
 /**
  * migrate the entire make to a single build
@@ -40,10 +40,13 @@ fn schedule_git_commits() -> Result<(), Box<dyn Error>> {
 
 fn package_and_build_application() {
     let build = Command::new("make")
-        .arg("all");
-    if ! &build.status().unwrap().success() {
+        .arg("all")
+        .status()
+        .unwrap();
+
+    if ! &build.success() {
         eprintln!("failed make, was unable to build the application");
-        process.exit(1);
+        std::process::exit(1);    
     }
     _ = build;
     let bin_path = "calc";
@@ -59,7 +62,7 @@ fn cp_bin_sys(from: impl AsRef<Path>, to: impl AsRef<Path>) {
         let to = to.as_ref().join(e.file_name());
         if e.file_type().unwrap().is_dir() {
             std::fs::create_dir_all(&to).unwrap();
-            cp_r(&from, &to);
+            cp_bin_sys(&from, &to);
         } else {
             println!("{} => {}", from.display(), to.display());
             std::fs::copy(&from, &to).unwrap();
